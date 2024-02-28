@@ -21,4 +21,9 @@ public class CustomerController {
         model.addAttribute("customers", customerList);
         return "/index";
     }
+    @GetMapping("/create")
+    public String create(Model model) {
+        model.addAttribute("customer", new Customer());
+        return "/create";
+    }
 }
