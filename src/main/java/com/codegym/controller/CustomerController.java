@@ -40,4 +40,10 @@ public class CustomerController {
         model.addAttribute("customer", customerService.findByID(id));
         return "/update";
     }
+
+    @PostMapping("/update")
+    public String update(Customer customer) {
+        customerService.update(customer.getId(), customer);
+        return "redirect:/customers";
+    }
 }
