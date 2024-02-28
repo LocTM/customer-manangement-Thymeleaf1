@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -49,7 +50,14 @@ public class CustomerController {
 
     @GetMapping("/{id}/delete")
     public String delete(@PathVariable int id, Model model) {
-        model.addAttribute("customer", customerService.findByID(id);
+        model.addAttribute("customer", customerService.findByID(id));
         return "/delete";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Customer customer, RedirectAttributes redirect) {
+        customerService.remove(customer.getId());
+        redirect.addFlashAttribute("success", "Removed customer successfully!");
+        return "redirect:/customers";
     }
 }
