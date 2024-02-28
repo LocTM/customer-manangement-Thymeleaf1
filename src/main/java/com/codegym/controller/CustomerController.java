@@ -46,4 +46,10 @@ public class CustomerController {
         customerService.update(customer.getId(), customer);
         return "redirect:/customers";
     }
+
+    @GetMapping("/{id}/delete")
+    public String delete(@PathVariable int id, Model model) {
+        model.addAttribute("customer", customerService.findByID(id);
+        return "/delete";
+    }
 }
