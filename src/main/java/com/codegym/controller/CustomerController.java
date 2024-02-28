@@ -6,6 +6,7 @@ import com.codegym.service.ICustomerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -33,5 +34,10 @@ public class CustomerController {
         customer.setId((int) (Math.random() * 10000));
         customerService.save(customer);
         return "redirect:/customer";
+    }
+    @GetMapping("/{id}/edit")
+    public String update(@PathVariable int id, Model model) {
+        model.addAttribute("customer", customerService.findById(id));
+        return "/update";
     }
 }
