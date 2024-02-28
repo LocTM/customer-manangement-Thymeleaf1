@@ -37,7 +37,7 @@ public class CustomerController {
     }
     @GetMapping("/{id}/edit")
     public String update(@PathVariable int id, Model model) {
-        model.addAttribute("customer", customerService.findById(id));
+        model.addAttribute("customer", customerService.findByID(id));
         return "/update";
     }
 }
